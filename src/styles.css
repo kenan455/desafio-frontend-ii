@@ -1,0 +1,62 @@
+html,
+body,
+root {
+  height: 100%;
+  margin: 0px;
+}
+
+.ContainerSelecioneJogador {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 99vh;
+}
+
+.Titulo {
+  color: white;
+}
+
+.Subtitulo {
+  color: white;
+}
+
+.Container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.BoxJogador {
+  width: 80px;
+  height: 80px;
+  background-color: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+
+.BoxJogador:hover {
+  cursor: pointer;
+}
+
+.JogadorX {
+  font-size: 40px;
+  color: red;
+}
+
+.JogadorO {
+  font-size: 40px;
+  color: blue;
+}
+
+.InlineItems {
+  display: flex;
+  flex-direction: row;
+}
+
+.ReiniciarJogo {
+  margin-top: 20px;
+  color: purple;
+}
