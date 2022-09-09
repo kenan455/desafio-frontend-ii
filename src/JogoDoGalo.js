@@ -82,6 +82,8 @@ export function JogoDoGalo() {
     } else {
       setGanhador("nenhum");
     }
+
+    return setTela("ganhador");
   }
 
   // eslint-disable-next-line default-case
@@ -90,6 +92,8 @@ export function JogoDoGalo() {
       return getTelaMenu();
     case "jogo":
       return getTelaJogo();
+    case "ganhador":
+      return getTelaGanhador();
   }
 
   function getTelaMenu() {
@@ -105,7 +109,7 @@ export function JogoDoGalo() {
 
           <p>ou</p>
 
-          <button className="BoxJogador" onClick={() => iniciarJogo("X")}>
+          <button className="BoxJogador" onClick={() => iniciarJogo("O")}>
             <p className="JogadorO">O</p>
           </button>
         </div>
@@ -145,6 +149,34 @@ export function JogoDoGalo() {
             </div>
           );
         })}
+
+        <button className="ReiniciarJogo" onClick={() => setTela("menu")}>
+          Reiniciar Jogo
+        </button>
+      </div>
+    );
+  }
+
+  function getTelaGanhador() {
+    return (
+      <div className="ContainerSelecioneJogador">
+        <h1 className="Title">Ganhador</h1>
+
+        {ganhador === "X" ? (
+          <div className="Container">
+            <button className="BoxJogador">
+              <p className="JogadorX">X</p>
+            </button>
+          </div>
+        ) : ganhador === "O" ? (
+          <div className="Container">
+            <button className="BoxJogador">
+              <p className="JogadorO">O</p>
+            </button>
+          </div>
+        ) : (
+          <div>nenhum ganhador</div>
+        )}
 
         <button className="ReiniciarJogo" onClick={() => setTela("menu")}>
           Reiniciar Jogo
