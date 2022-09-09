@@ -1,4 +1,4 @@
-# barber-app
+# desafio front-end
 
 <h2 id="built_with">📝 Como rodar o projeto localmente?</h2>
 
