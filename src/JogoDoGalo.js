@@ -9,6 +9,18 @@ export function JogoDoGalo() {
   const [jogadasRestantes, setJogadasRestantes] = useState(0);
   const [ganhador, setGanhador] = useState("");
 
+  function BotaoReiniciar() {
+    return (
+      <button
+        className="ReiniciarJogo"
+        onClick={() => setTela("menu")}
+        data-testid="restart"
+      >
+        Reiniciar Jogo
+      </button>
+    );
+  }
+
   function iniciarJogo(jogador) {
     setJogadorAtual(jogador);
 
@@ -99,7 +111,7 @@ export function JogoDoGalo() {
   function getTelaMenu() {
     return (
       <div className="ContainerSelecioneJogador">
-        <h1 className="Title">Jogo do galo(???) LOL</h1>
+        <h1 className="Title">Jogo do galo</h1>
         <h3 className="Subtitulo">Selecione o primeiro jogador</h3>
 
         <div className="Container">
@@ -120,29 +132,34 @@ export function JogoDoGalo() {
   function getTelaJogo() {
     return (
       <div className="ContainerSelecioneJogador">
-        <h1 className="Title">Jogo do galo(???) LOL</h1>
-
+        <h1 className="Title">Jogo do galo</h1>
         {tabuleiro.map((linha, numeroLinha) => {
           return (
             <div key={numeroLinha} className="InlineItems">
               {linha.map((coluna, numeroColuna) => {
                 return coluna === "X" ? (
                   <button
+                    data-testid={`l${linha}c${coluna}`}
                     key={numeroColuna}
                     className="BoxJogador"
                     onClick={() => jogar(numeroLinha, numeroColuna)}
                     disabled={coluna !== ""}
                   >
-                    <p className="JogadorX">{coluna}</p>
+                    <p className="JogadorX" data-testid="turn">
+                      {coluna}
+                    </p>
                   </button>
                 ) : (
                   <button
+                    data-testid={`l${linha}c${coluna}`}
                     key={numeroColuna}
                     className="BoxJogador"
                     onClick={() => jogar(numeroLinha, numeroColuna)}
                     disabled={coluna !== ""}
                   >
-                    <p className="JogadorO">{coluna}</p>
+                    <p className="JogadorO" data-testid="turn">
+                      {coluna}
+                    </p>
                   </button>
                 );
               })}
@@ -150,9 +167,7 @@ export function JogoDoGalo() {
           );
         })}
 
-        <button className="ReiniciarJogo" onClick={() => setTela("menu")}>
-          Reiniciar Jogo
-        </button>
+        <BotaoReiniciar />
       </div>
     );
   }
@@ -160,27 +175,31 @@ export function JogoDoGalo() {
   function getTelaGanhador() {
     return (
       <div className="ContainerSelecioneJogador">
-        <h1 className="Title">Ganhador</h1>
+        <h1 className="Title" data-testid="gameover">
+          Jogo terminado!
+        </h1>
 
         {ganhador === "X" ? (
           <div className="Container">
             <button className="BoxJogador">
-              <p className="JogadorX">X</p>
+              <p className="JogadorX" data-testid="winner">
+                X
+              </p>
             </button>
           </div>
         ) : ganhador === "O" ? (
           <div className="Container">
             <button className="BoxJogador">
-              <p className="JogadorO">O</p>
+              <p className="JogadorO" data-testid="winner">
+                O
+              </p>
             </button>
           </div>
         ) : (
           <div>nenhum ganhador</div>
         )}
 
-        <button className="ReiniciarJogo" onClick={() => setTela("menu")}>
-          Reiniciar Jogo
-        </button>
+        <BotaoReiniciar />
       </div>
     );
   }
